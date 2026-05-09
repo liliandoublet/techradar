@@ -1,0 +1,14 @@
+# Environment
+.env
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# VS Code
+.vscode/
+
+# AWS
+.aws/
+samconfig.toml
