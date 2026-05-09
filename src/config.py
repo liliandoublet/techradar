@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # AI
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 #Email
 SENDGRID_API_API = os.getenv("SENDGRID_API_KPI")
