@@ -7,8 +7,9 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 #Email
-SENDGRID_API_API = os.getenv("SENDGRID_API_KPI")
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KPI")
 DIGEST_RECIPIENT = os.getenv("DIGEST_RECIPIENT")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 
 # Agent
 TOPICS = os.getenv("TOPICS", "AI,Python,Cloud").split(",")
