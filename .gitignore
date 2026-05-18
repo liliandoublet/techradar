@@ -12,3 +12,5 @@ __pycache__/
 # AWS
 .aws/
 samconfig.toml
+awscliv2.zip
+aws/
