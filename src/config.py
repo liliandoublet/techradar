@@ -12,7 +12,7 @@ DIGEST_RECIPIENT = os.getenv("DIGEST_RECIPIENT")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 
 # Agent
-TOPICS = os.getenv("TOPICS", "AI,Python,Cloud").split(",")
+TOPICS = TOPICS = os.getenv("TOPICS", "AI,Python,Cloud").replace("_", ",").split(",")
 MAX_ARTICLES = int(os.getenv("MAX_ARTICLES", 10))
 
 # AWS

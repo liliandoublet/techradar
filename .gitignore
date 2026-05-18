@@ -9,8 +9,13 @@ __pycache__/
 # VS Code
 .vscode/
 
-# AWS
-.aws/
-samconfig.toml
+# Ouvre .gitignore et ajoute ces lignes
+echo "# AWS
 awscliv2.zip
+techradar.zip
+output.json
+package/
 aws/
+
+# Secrets
+.env" > .gitignore
