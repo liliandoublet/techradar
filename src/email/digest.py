@@ -22,12 +22,12 @@ def build_html(articles: list[dict]) -> str:
     return f"""
     <html>
     <body style="font-family:sans-serif; max-width:680px; margin:auto; padding:32px; color:#111827">
-        <h1 style="color:#4F46E5">⚡ PulseAI — Daily Tech Digest</h1>
+        <h1 style="color:#4F46E5">⚡ Techradar — Daily Tech Digest</h1>
         <p style="color:#6B7280">Your top {len(articles)} articles today, ranked by relevance.</p>
         <hr style="border:none; border-top:1px solid #E5E7EB; margin:24px 0">
         {rows}
         <hr style="border:none; border-top:1px solid #E5E7EB; margin:24px 0">
-        <p style="color:#9CA3AF; font-size:12px">Powered by PulseAI · Gemini AI · Built with ❤️</p>
+        <p style="color:#9CA3AF; font-size:12px">Powered by Techradar · Gemini AI · Built with ❤️</p>
     </body>
     </html>
     """
