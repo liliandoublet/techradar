@@ -107,7 +107,8 @@ techradar/
 │   └── daily.yml              # GitHub Actions (backup schedule + CI)
 ├── .env.example               # Environment variables template
 ├── .gitignore
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 └── README.md
 ```
 
@@ -130,11 +131,11 @@ git clone https://github.com/liliandoublet/techradar.git
 cd techradar
 
 # 2. Create virtual environment
-python3 -m venv .venv
+uv venv
 source .venv/bin/activate
 
 # 3. Install dependencies
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 
 # 4. Configure environment
 cp .env.example .env
@@ -445,7 +446,8 @@ AWS EventBridge triggers the Lambda function every day at 7:00 AM UTC (8:00 AM P
 
 ## 🐛 Known Issues
 
-| Error | Cause | Fix ||---|---|---|
+| Error | Cause | Fix |
+|---|---|---|
 | `429 RESOURCE_EXHAUSTED` | Gemini free tier: 5 req/min | `time.sleep(10)` between requests |
 | `503 UNAVAILABLE` | Gemini overloaded | Article skipped, pipeline continues |
 | `403 Forbidden` SendGrid | Sender email not verified | Verify in SendGrid Sender Authentication |
