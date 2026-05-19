@@ -5,7 +5,7 @@ from src.config import GEMINI_API_KEY, TOPICS
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 def summarize_and_score(article: dict) -> dict:
-    time.sleep(15)
+    time.sleep(10)
     prompt = f"""
 
 You are a tech news analyst. Given this article , do 2 things:
