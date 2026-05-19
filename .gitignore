@@ -1,6 +1,7 @@
 # === Environment ===
 .env
 .env.local
+requirements.txt
 
 # === Python ===
 __pycache__/
