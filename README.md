@@ -236,8 +236,8 @@ Expected output:
 ```json
 {
     "UserId": "...",
-    "Account": "940482411170",
-    "Arn": "arn:aws:iam::940482411170:user/techradar"
+    "Account": "************",
+    "Arn": "arn:aws:iam::************:user/REDACTED"
 }
 ```
 
