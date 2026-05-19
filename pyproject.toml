@@ -1,7 +1,7 @@
 [project]
 name = "techradar"
 version = "0.1.0"
-description = "Add your description here"
+description = "Dépendances de mon projet de veille"
 requires-python = ">=3.11"
 dependencies = [
     "feedparser>=6.0.12",
