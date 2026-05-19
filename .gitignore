@@ -1,21 +1,27 @@
-# Environment
+# === Environment ===
 .env
+.env.local
+
+# === Python ===
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Virtual environment
+# === Virtual environment ===
 .venv/
 
-# VS Code
+# === VS Code ===
 .vscode/
 
-# Ouvre .gitignore et ajoute ces lignes
-echo "# AWS
+# === AWS ===
 awscliv2.zip
-techradar.zip
-output.json
-package/
 aws/
+techradar.zip
+package/
+output.json
+*.zip
 
-# Secrets
-.env" > .gitignore
+# === OS ===
+.DS_Store
+Thumbs.db
