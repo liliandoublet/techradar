@@ -285,6 +285,9 @@ aws iam attach-role-policy \
 Lambda runs on Amazon Linux — dependencies must be compiled for that environment. Use Docker to ensure binary compatibility:
 
 ```bash
+# Generate requirements.txt from pyproject.toml (needed for Docker build)
+uv pip compile pyproject.toml -o requirements.txt
+
 # Build dependencies inside an Amazon Linux container
 mkdir package
 docker run --rm \
