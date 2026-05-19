@@ -135,7 +135,7 @@ uv venv
 source .venv/bin/activate
 
 # 3. Install dependencies
-uv pip install -r requirements.txt
+uv sync
 
 # 4. Configure environment
 cp .env.example .env
