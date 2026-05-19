@@ -1,7 +1,0 @@
-google-genai
-feedparser
-httpx
-python-dotenv
-sendgrid
-pytest
-praw
