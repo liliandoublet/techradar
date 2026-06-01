@@ -23,7 +23,7 @@ def run():
     print("\n🤖 Step 3 — Summarizing with Gemini...")
     scored = []
     for i, article in enumerate(new_articles[:10]):
-        print(f"  Processing {i+1}/20: {article['title'][:50]}...")
+        print(f"  Processing {i+1}/20: {article['title'][:30]}...")
         result = summarize_and_score(article)
         scored.append(result)
 
