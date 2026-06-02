@@ -16,6 +16,10 @@ The daily digest email, ranked by relevance score:
   <img src="docs/screenshots/email-digest.png" alt="TechRadar daily digest" width="800">
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/aws-console.png" alt="Aws console" width="800">
+</p>
+
 > **Stop scrolling Reddit and Hacker News.** TechRadar scans the web every morning, uses AI to rank what matters, and delivers a personalized tech digest straight to your inbox at 8 AM.
 
 ---
