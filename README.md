@@ -8,6 +8,8 @@
   <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
 </p>
 
+> **Stop scrolling Reddit and Hacker News.** TechRadar scans the web every morning, uses AI to rank what matters, and delivers a personalized tech digest straight to your inbox at 8 AM.
+
 
 ## 📸 Preview
 
@@ -21,7 +23,6 @@ Aws console, Policies and permissions in AWS:
   <img src="docs/screenshots/aws-console.png" alt="Aws console" width="800">
 </p>
 
-> **Stop scrolling Reddit and Hacker News.** TechRadar scans the web every morning, uses AI to rank what matters, and delivers a personalized tech digest straight to your inbox at 8 AM.
 
 ---
 
