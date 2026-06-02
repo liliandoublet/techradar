@@ -1,5 +1,8 @@
 # 🔍 TechRadar — Automated Tech Intelligence Agent
 
+<p align="center">
+  <img src="docs/screenshots/email-digest.png" alt="TechRadar daily digest" width="800">
+</p>
 > **Stop scrolling Reddit and Hacker News.** TechRadar scans the web every morning, uses AI to rank what matters, and delivers a personalized tech digest straight to your inbox at 8 AM.
 
 <p align="center">
