@@ -1,5 +1,13 @@
 # 🔍 TechRadar — Automated Tech Intelligence Agent
 
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python">
+  <img src="https://img.shields.io/badge/AWS-Lambda-orange.svg" alt="AWS Lambda">
+  <img src="https://img.shields.io/badge/AI-Google%20Gemini-4285F4.svg" alt="Gemini">
+  <img src="https://img.shields.io/badge/email-SendGrid-00B4E3.svg" alt="SendGrid">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+</p>
+
 
 ## 📸 Preview
 
@@ -9,14 +17,6 @@ The daily digest email, ranked by relevance score:
 </p>
 
 > **Stop scrolling Reddit and Hacker News.** TechRadar scans the web every morning, uses AI to rank what matters, and delivers a personalized tech digest straight to your inbox at 8 AM.
-
-<p align="center">
-  <img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python">
-  <img src="https://img.shields.io/badge/AWS-Lambda-orange.svg" alt="AWS Lambda">
-  <img src="https://img.shields.io/badge/AI-Google%20Gemini-4285F4.svg" alt="Gemini">
-  <img src="https://img.shields.io/badge/email-SendGrid-00B4E3.svg" alt="SendGrid">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-</p>
 
 ---
 
