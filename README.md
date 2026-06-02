@@ -16,6 +16,7 @@ The daily digest email, ranked by relevance score:
   <img src="docs/screenshots/email-digest.png" alt="TechRadar daily digest" width="800">
 </p>
 
+Aws console, Policies and permissions in AWS:
 <p align="center">
   <img src="docs/screenshots/aws-console.png" alt="Aws console" width="800">
 </p>
