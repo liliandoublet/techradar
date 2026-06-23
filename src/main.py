@@ -5,7 +5,7 @@ from src.email.digest import send_digest
 from src.cache import load_seen, save_seen
 
 def run():
-    print("🚀 PulseAI starting...\n")
+    print("🚀 TechRadar starting...\n")
 
     # Step 1 — Charger le cache
     print("💾 Step 1 — Loading cache from S3...")

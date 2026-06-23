@@ -83,17 +83,80 @@ TechRadar is a serverless agent that runs every morning on AWS Lambda and delive
 
 ---
 
+## 🔀 Architecture LangGraph
+
+Since the refactor, the sequential pipeline in `main.py` is replaced by a `StateGraph` defined in `src/graph.py`. Each step is an isolated node that reads from and writes to a shared `TechWatchState`.
+
+### Graphe d'execution
+
+```
+START
+  |
+  v
+collect_articles
+  |
+  +-- [error == "no_articles"] ---------> END (log: aucun article aujourd'hui)
+  |
+  +-- [ok] --> filter_and_deduplicate --> summarize_with_gemini
+                                                |
+                  +-- [gemini_error, retry < 3] --> retry_gemini --.
+                  |                                                  |
+                  |                         <------------------------'
+                  |
+                  +-- [gemini_error, retry >= 3] --> END (log: echec apres 3 tentatives)
+                  |
+                  +-- [ok] --> send_email --> END
+```
+
+### TypedDict d'etat partage
+
+```python
+class TechWatchState(TypedDict):
+    raw_articles: list[dict]       # articles bruts des scrapers
+    filtered_articles: list[dict]  # apres deduplication cache S3
+    summaries: list[dict]          # resumes + scores Gemini
+    email_sent: bool               # True si SendGrid a repondu 202
+    retry_count: int               # nombre de tentatives Gemini echouees
+    error: str | None              # "no_articles" | "gemini_error" | None
+    run_date: str                  # date ISO de l'execution Lambda
+```
+
+### Description des noeuds
+
+| Noeud | Role | Cle(s) modifiees |
+|---|---|---|
+| `collect_articles` | Scrape HN + RSS, deduplique par URL | `raw_articles`, `error` |
+| `filter_and_deduplicate` | Filtre les URLs deja vues dans le cache S3 | `filtered_articles` |
+| `summarize_with_gemini` | Appelle Gemini via `ChatGoogleGenerativeAI` | `summaries`, `error`, `retry_count` |
+| `retry_gemini` | Remet `error` a None et vide les resumes partiels | `error`, `summaries` |
+| `send_email` | Envoie le digest HTML via SendGrid, sauvegarde le cache | `email_sent` |
+
+### Avant / apres la refacto
+
+| | Avant (`main.py`) | Apres (`graph.py`) |
+|---|---|---|
+| Orchestration | 44 lignes sequentielles | `StateGraph` LangGraph |
+| Gestion d'erreurs | `try/except` locaux, pipeline continue | Routage conditionnel avec retry automatique |
+| Retry Gemini | Aucun (article saute) | 3 tentatives avec compteur d'etat |
+| Observabilite | `print()` inline | `loguru` structure par noeud |
+| Testabilite | Test du pipeline entier | Chaque noeud testable independamment |
+| Lignes d'orchestration | ~44 | ~20 (hors definition des noeuds) |
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
 |---|---|
 | **Language** | Python 3.11+ |
-| **AI Model** | Google Gemini 2.0 Flash |
+| **AI Model** | Google Gemini 2.5 Flash |
+| **Orchestration** | LangGraph + LangChain Google GenAI |
 | **Scraping** | HN Firebase API, `feedparser`, `praw` |
 | **Compute** | AWS Lambda |
 | **Storage** | AWS S3 (deduplication cache) |
 | **Scheduling** | AWS EventBridge |
 | **Email** | SendGrid |
+| **Logging** | Loguru |
 | **CI/CD** | GitHub Actions |
 
 ---
@@ -105,18 +168,24 @@ techradar/
 ├── src/
 │   ├── __init__.py
 │   ├── config.py              # Environment variables loader
-│   ├── main.py                # Main pipeline orchestrator
+│   ├── state.py               # TechWatchState TypedDict (LangGraph shared state)
+│   ├── graph.py               # LangGraph StateGraph with 5 nodes
+│   ├── main.py                # Legacy sequential pipeline (kept for reference)
 │   ├── cache.py               # AWS S3 cache (deduplication)
-│   ├── lambda_handler.py      # AWS Lambda entry point
+│   ├── lambda_handler.py      # AWS Lambda entry point (calls graph.app)
 │   ├── agent/
-│   │   ├── summarizer.py      # Gemini AI summarization + scoring
-│   │   └── filter.py          # Ranking and top N selection
+│   │   ├── summarizer.py      # Gemini AI summarization + scoring (legacy)
+│   │   └── filter.py          # Ranking and top N selection (legacy)
 │   ├── scrapers/
 │   │   ├── __init__.py        # Merge + deduplicate all sources
 │   │   ├── hackernews.py      # Hacker News API scraper
-│   │   └── rss.py             # Reddit RSS parser
+│   │   └── rss.py             # RSS parser
 │   └── email/
 │       └── digest.py          # HTML email builder + SendGrid sender
+├── tests/
+│   ├── test_graph_no_articles.py   # Graph exits cleanly when no articles collected
+│   ├── test_graph_gemini_retry.py  # Retry logic: fail x2 then succeed
+│   └── test_graph_full.py          # End-to-end with all external APIs mocked
 ├── .github/workflows/
 │   └── daily.yml              # GitHub Actions (backup schedule + CI)
 ├── .env.example               # Environment variables template
