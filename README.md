@@ -46,7 +46,7 @@ Aws console, Policies and permissions in AWS:
 TechRadar is a serverless agent that runs every morning on AWS Lambda and delivers a curated tech digest to my inbox.
 
 - 🌐 Scrapes the latest articles from **Hacker News API** and **Reddit RSS**
-- 🤖 Uses **Google Gemini 2.0 Flash** to summarize each article and score its relevance (0–10) against configured topics
+- 🤖 Uses **Google Gemini 2.5 Flash** to summarize each article and score its relevance (0–10) against configured topics
 - 📧 Sends the top 10 picks as a clean HTML email via **SendGrid**
 - 🔄 Caches processed article URLs in **AWS S3** to avoid duplicates between runs
 - ⏰ Triggered daily at 8 AM Paris time by **AWS EventBridge**
@@ -151,7 +151,7 @@ class TechWatchState(TypedDict):
 | **Language** | Python 3.11+ |
 | **AI Model** | Google Gemini 2.5 Flash |
 | **Orchestration** | LangGraph + LangChain Google GenAI |
-| **Scraping** | HN Firebase API, `feedparser`, `praw` |
+| **Scraping** | HN Firebase API, `feedparser` |
 | **Compute** | AWS Lambda |
 | **Storage** | AWS S3 (deduplication cache) |
 | **Scheduling** | AWS EventBridge |
@@ -513,7 +513,7 @@ S3_BUCKET_NAME=techradar-cache
 Each run fetches the latest articles from Hacker News (Firebase API) and Reddit (RSS). Article URLs are checked against the S3 cache — duplicates are discarded immediately.
 
 ### Phase 2 — AI Processing
-New articles are sent one by one to Gemini 2.0 Flash. For each article, Gemini returns:
+New articles are sent one by one to Gemini 2.5 Flash. For each article, Gemini returns:
 - A 3-bullet summary
 - A relevance score (0–10) based on the configured `TOPICS`
 

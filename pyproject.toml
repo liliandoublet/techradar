@@ -12,7 +12,6 @@ dependencies = [
     "langchain-google-genai>=2.0.0",
     "langgraph>=0.2.0",
     "loguru>=0.7.0",
-    "praw>=7.8.1",
     "pytest>=9.0.3",
     "python-dotenv>=1.2.2",
     "sendgrid>=6.12.5",
@@ -23,3 +22,6 @@ dev = [
     "pytest>=9.0.3",
     "ruff>=0.15.13",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
